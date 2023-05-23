@@ -8,13 +8,17 @@ const port = 5000
 main().catch(err => console.log(err));
 async function main() {
     try{
-        await mongoose.connect('mongodb://127.0.0.1:27017/test');
+        await mongoose.connect('mongodb://127.0.0.1:27017/Book-collection');
         console.log(` Database Connection successful`);
     }
     catch (error) { ` Failed to connect database ` }
+
+ 
+
 }
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
+
 main();
