@@ -5,7 +5,7 @@ import { createBookCollection, getBookByGenre,getBookByGenreAndPublication,retri
 const router=express.Router()
 router.post('/createBook',createBookCollection );
 // problem two 
-router.get('/:genre', getBookByGenre)
+router.get('/genre/:genre', getBookByGenre)
 // problem three 
 router.get('/booksgenpub', getBookByGenreAndPublication)
 
