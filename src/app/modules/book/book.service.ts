@@ -46,3 +46,25 @@ export const retrieveFeaturedBooksFromDB = async (): Promise<void> => {
       }
     };
   };
+
+//   problem five 
+
+export const updatePublishedBooksFromDB = async (): Promise<void> => {
+    try {
+      const booksToUpdateIntiger = await Book.find({
+        publicationYear: { $gt: 2020 },
+        price: { $type: "string" },
+      });
+  
+      const updatedBooks = await Promise.all(
+        booksToUpdateIntiger.map(async (book) => {
+          book.price = parseInt(book.price as string);
+          return await book.save();
+        })
+      );
+  
+      console.log(`${updatedBooks.length} books Updated .`);
+    } catch (error) {
+      console.error(error);
+    }
+  };

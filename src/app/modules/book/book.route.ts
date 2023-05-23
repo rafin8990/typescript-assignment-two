@@ -1,5 +1,5 @@
 import express from 'express'
-import { createBookCollection, getBookByGenre,getBookByGenreAndPublication,retriveBook } from './book.controller'
+import { createBookCollection, getBookByGenre,getBookByGenreAndPublication,retriveBook,stringToIntiger } from './book.controller'
 
 
 const router=express.Router()
@@ -11,5 +11,8 @@ router.get('/booksgenpub', getBookByGenreAndPublication)
 
 // problem 4 
 router.get('/retrive-book', retriveBook)
+
+// problem 5 
+router.get('/stringToIntiger', stringToIntiger);
 
 export default router;

@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express"
-import { CreateBookCollectiontoDB, getBooksByGenreFromDB, getBookDataByGenreAndPublicationFromDB,retrieveFeaturedBooksFromDB } from "./book.service";
+import { CreateBookCollectiontoDB, getBooksByGenreFromDB, getBookDataByGenreAndPublicationFromDB,retrieveFeaturedBooksFromDB,updatePublishedBooksFromDB } from "./book.service";
 
 // problem two
 // get book collection specific genre 
@@ -51,5 +51,21 @@ export const retriveBook = async (req: Request, res: Response, next: NextFunctio
         });
     }
 };
+
+
+// problem five 
+// string to intiger
+
+export const stringToIntiger = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    const book = await updatePublishedBooksFromDB();
+    res.status(200).json({
+      status: "success",
+      data: book,
+    });
+  };
 
 

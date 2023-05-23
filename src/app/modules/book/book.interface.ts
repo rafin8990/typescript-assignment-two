@@ -12,5 +12,5 @@ export interface IBook {
         comment:string;
     }[];
     ratings:number;
-    price:number;
+    price:string | number;
 }
