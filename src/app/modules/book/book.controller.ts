@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express"
-import { CreateBookCollectiontoDB, getBooksByGenreFromDB } from "./book.service";
+import { CreateBookCollectiontoDB, getBooksByGenreFromDB, getBookDataByGenreAndPublicationFromDB,retrieveFeaturedBooksFromDB } from "./book.service";
 
-
+// problem two
 // get book collection specific genre 
 
 export const getBookByGenre = async (req: Request, res: Response, next: NextFunction) => {
@@ -18,8 +18,38 @@ export const getBookByGenre = async (req: Request, res: Response, next: NextFunc
 export const createBookCollection = async (req: Request, res: Response, next: NextFunction) => {
     const data = req.body;
     const book = await CreateBookCollectiontoDB(data)
-   res.status(200).json({
+    res.status(200).json({
         status: 'success',
         data: book
-    }) 
+    })
 }
+
+// third problem
+//get book collection by genre and publisher
+export const getBookByGenreAndPublication = async (req: Request, res: Response, next: NextFunction) => {
+    const book = await getBookDataByGenreAndPublicationFromDB()
+    res.status(200).json({
+        status: 'success',
+        data: book
+    })
+}
+
+// fourth problem 
+// retrieving books with featured Data
+
+export const retriveBook = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const book: void = await retrieveFeaturedBooksFromDB();
+        res.status(200).json({
+            status: "success",
+            data: book,
+        });
+    } catch (error) {
+        res.status(500).json({
+            status: "error",
+            message: "Failed to retrieve featured books",
+        });
+    }
+};
+
+
